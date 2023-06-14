@@ -1,0 +1,73 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta charset="UTF-8" />
+    {% comment %} <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/> {% endcomment %}
+    {% comment %} <meta property="og:title" content="Navigation for Electric Vehicles"> {% endcomment %}
+    
+    <title>EV-Charging</title>
+    {% include 'NavUserAdmin/includesNav/css.html' %}
+    <link rel="stylesheet" href="{% static 'nav/home.css' %}" />
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      th, td {
+        text-align: left;
+        padding: 8px;
+      }
+
+      th {
+        background-color: #f2f2f2;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+
+  <body>
+    {% include 'NavUserAdmin/includesNav/header.html' %}
+    <div>
+      <p class="about_heading">Welcome Back To Ev-Charging</p>
+    </div>
+
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>Station Name</th>
+            <th>Station Location</th>
+            <th>Owner Name</th>
+            <th>Cancel Booking</th>
+          </tr>
+        </thead>
+        <tbody>
+         {% for i in books %}
+          <tr>
+            <td><a href="#">{{i.add_station.station_name}}</a></td>
+            <td><a href="#"> {{i.add_station.location_city}}</a></td>
+            <td><a href="#">{{i.add_station.owner_name}}</a></td>
+            <td>
+              <a href="{% url 'cancelbookingev' i.id %}">Cancel</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="footer">
+        <a class="footer_text" href="#" target="_blank">
+          <a >&copy; 2021 All Rights Reserved By EV-Charging</a></a>
+      </div>
+    {% include 'NavUserAdmin/includesNav/js.html' %}
+  </body>
+</html>
+

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+ 
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f1f1f1;
+        }
+        
+        #sidebar {
+            background-color: #333;
+            color: #fff;
+            width: 250px;
+            height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+            position: fixed;
+        }
+        
+        #sidebar h2 {
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #fff;
+        }
+        
+        #sidebar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+        
+        #sidebar ul li {
+            margin-bottom: 10px;
+        }
+        
+        #sidebar ul li a {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            padding: 8px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        #sidebar ul li a:hover {
+            background-color: #ffd700;
+        }
+        
+        #content {
+            padding: 20px;
+            margin-left: 250px;
+        }
+        
+        #content h1 {
+            margin-top: 0;
+            color: #333;
+        }
+        
+        #content p {
+            line-height: 1.5;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+          }
+        
+          th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+          }
+        
+          th {
+            background-color: #4caf50;
+            color: #fff;
+          }
+        
+          td a {
+            display: inline-block;
+            padding: 6px 12px;
+            background-color: #f44336;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+          }
+        
+          td a:hover {
+            background-color: #e53935;
+          }
+        
+          td:nth-child(4) a {
+            background-color: #2196f3;
+          }
+        
+          td:nth-child(4) a:hover {
+            background-color: #1976d2;
+          }
+    </style>
+</head>
+<body>
+    {% include  'AdminStation/includefiles/sidebar.html'  %}
+    <div id="content" style="position: fixed;
+    top: 90px;
+    bottom: 20px;
+    left: 270px;
+    right: 0; /* Adjust if necessary */
+    margin: auto;">
+        <h1 style="color:white">Welcome to the Admin Dashboard</h1>
+        
+        <label for="price" style="color:white">Price per minute:</label>
+        <input type="number" id="price" name="price" step="0.01" min="0" required>
+        
+        <br><br>
+        
+        <button onclick="startTimer()" class="btn btn-primary">Start</button>
+        <button onclick="stopTimer()" class="btn btn-danger">Stop</button>
+        
+        <br><br>
+        
+        <div id="timer" style="color:white"></div>
+        
+        <br>
+        
+        <div id="bill" style="color:white"></div>
+        <br>
+        <form action={% url 'completecharging' %} method="GET">
+            {% csrf_token %}
+            <input type="totalbill" id="totalbill" name="totalbill"  required>
+            <input type="id" id="id" name="id" value={{booking.id}} hidden required>
+            <button>Complete Charging</button>
+            {% comment %} <button  class="btn btn-primary"></button> {% endcomment %}
+   
+        </form>
+     </div>
+    
+    <script>
+        var startTime;
+        var perMinutePrice;
+        var timerInterval;
+        
+        function startTimer() {
+            var priceInput = document.getElementById('price');
+            perMinutePrice = parseFloat(priceInput.value);
+        
+            if (isNaN(perMinutePrice) || perMinutePrice <= 0) {
+                alert('Please enter a valid price per minute.');
+                return;
+            }
+        
+            startTime = new Date().getTime();
+            timerInterval = setInterval(updateTimer, 1000);
+        }
+        
+        function updateTimer() {
+            var currentTime = new Date().getTime();
+            var elapsedTime = currentTime - startTime;
+        
+            var minutes = Math.floor(elapsedTime / 60000);
+            var seconds = Math.floor((elapsedTime % 60000) / 1000);
+        
+            document.getElementById('timer').innerHTML = 'Time Elapsed: ' + minutes + 'm ' + seconds + 's';
+        
+            var bill = (elapsedTime / 60000) * perMinutePrice;
+            document.getElementById('bill').innerHTML = 'Total Bill: $' + bill.toFixed(2);
+            var totalBillInput = document.getElementById("totalbill");
+            totalBillInput.value = bill.toFixed(2);
+            
+        }
+        
+        function stopTimer() {
+            clearInterval(timerInterval);
+        }
+    </script>
+</body>
+</html>

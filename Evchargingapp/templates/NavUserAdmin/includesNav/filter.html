@@ -1,0 +1,446 @@
+<html>
+
+
+<head>
+    {% comment %} <style>
+        .button {
+          display: inline-block;
+          padding: 6px 14px;
+          background-color: #4CAF50;
+          color: #fff;
+          text-decoration: none;
+          border-radius: 2px;
+          border: none;
+          cursor: pointer;
+          font-size: 12px;
+        }
+        
+        .button:hover {
+          background-color: #45a049;
+        }
+      </style> {% endcomment %}
+      <style>
+        .container {
+          display: flex;
+          flex-wrap: wrap;
+        }
+      
+        .box {
+          width: calc(20% - 10px); /* Adjust the width as needed */
+          margin: 0px;
+          
+          padding: 0px;
+          box-sizing: border-box;
+        }
+      </style>
+</head>
+    <body>
+       
+            <lable style="color:white">Time:</lable>
+            <div class="container">
+                <div class="box"><form action="{% url 'filter' %}" method="POST" >
+                    {% csrf_token %}
+                    <input type="text" id="latitude1" name="latitude" hidden readonly>
+                    <input type="text" id="longitude1" name="longitude" hidden readonly>
+                    <input type="text" id="minute" name="minute" value=5 hidden readonly>
+                    <button style="width:140px;height:40px " type="submit">5 Minute</button>
+                  </form></div>
+  <div class="box"><form action="{% url 'filter' %}" method="POST" >
+    {% csrf_token %}
+    <input type="text" id="latitude2" name="latitude" hidden readonly>
+    <input type="text" id="longitude2" name="longitude" hidden readonly>
+    <input type="text" id="minute" name="minute" value=15 hidden readonly>
+    <button style="width:140px;height:40px "  type="submit">15 Minute</button>
+  </form></div>
+  <div class="box">  <form action="{% url 'filter' %}" method="POST">
+    {% csrf_token %}
+    <input type="text" id="latitude3" name="latitude" hidden readonly>
+    <input type="text" id="longitude3" name="longitude" hidden readonly>
+    <input type="text" id="minute" name="minute" value=25 hidden readonly>
+    <button style="width:140px;height:40px "  type="submit">25 Minute</button>
+  </form></div>
+  <div class="box"><form action="{% url 'filter' %}" method="POST">
+    {% csrf_token %}
+    <input type="text" id="latitude4" name="latitude" hidden readonly>
+    <input type="text" id="longitude4" name="longitude" hidden readonly>
+    <input type="text" id="minute" name="minute" value=35 hidden readonly>
+    <button style="width:160px;height:40px "  type="submit">35 Minute</button>
+  </form></div>
+  <div class="box"><form action="{% url 'filter' %}" method="POST">
+    {% csrf_token %}
+    <input type="text" id="latitude5" name="latitude" hidden readonly>
+    <input type="text" id="longitude5" name="longitude" hidden readonly>
+    <input type="text" id="minute" name="minute" value=45 hidden readonly>
+    <button style="width:160px;height:40px "  type="submit">45 Minute</button>
+  </form></div>
+              
+              </div>
+            
+
+
+              
+              <lable style="color:white">Distance:</lable>
+            <div class="container">
+                <div class="box"><form action="{% url 'filterdistance' %}" method="POST" >
+                    {% csrf_token %}
+                    <input type="text" id="latitude6" name="latitude" hidden readonly>
+                    <input type="text" id="longitude6" name="longitude" hidden readonly>
+                    <input type="text" id="minute" name="minute" value=5 hidden readonly>
+                    <button style="width:140px;height:40px " type="submit">5 km</button>
+                  </form></div>
+  <div class="box"><form action="{% url 'filterdistance' %}" method="POST" >
+    {% csrf_token %}
+    <input type="text" id="latitude7" name="latitude" hidden readonly>
+    <input type="text" id="longitude7" name="longitude" hidden readonly>
+    <input type="text" id="minute" name="minute" value=15 hidden readonly>
+    <button style="width:140px;height:40px "  type="submit">15 km</button>
+  </form></div>
+  <div class="box">  <form action="{% url 'filterdistance' %}" method="POST">
+    {% csrf_token %}
+    <input type="text" id="latitude8" name="latitude" hidden readonly>
+    <input type="text" id="longitude8" name="longitude" hidden readonly>
+    <input type="text" id="minute" name="minute" value=25 hidden readonly>
+    <button style="width:140px;height:40px "  type="submit">25 km</button>
+  </form></div>
+  <div class="box"><form action="{% url 'filterdistance' %}" method="POST">
+    {% csrf_token %}
+    <input type="text" id="latitude9" name="latitude" hidden readonly>
+    <input type="text" id="longitude9" name="longitude" hidden readonly>
+    <input type="text" id="minute" name="minute" value=35 hidden readonly>
+    <button style="width:160px;height:40px "  type="submit">35 km</button>
+  </form></div>
+  <div class="box"><form action="{% url 'filterdistance' %}" method="POST">
+    {% csrf_token %}
+    <input type="text" id="latitude10" name="latitude" hidden readonly>
+    <input type="text" id="longitude10" name="longitude" hidden readonly>
+    <input type="text" id="minute" name="minute" value=45 hidden readonly>
+    <button style="width:160px;height:40px "  type="submit">45 km</button>
+  </form></div>
+              
+              </div>
+              
+            
+            {% comment %} <a href="#" class="button">10 Mintute</a>
+            <a href="#" class="button">15 Mintute</a>
+            <a href="#" class="button">25 Mintute</a>
+            <a href="#" class="button">35 Mintute</a>
+            <a href="#" class="button">45 Mintute</a> {% endcomment %}
+        
+          
+        {% comment %} <br>
+          <div class="container">
+            <lable style="color:white">Distance:  </lable>
+            <a href="#" class="button">5 KiloMeter</a>
+            <a href="#" class="button">10 KiloMeter</a>
+            <a href="#" class="button">15 KiloMeter</a>
+            <a href="#" class="button">25 KiloMeter</a>
+            <a href="#" class="button">35 KiloMeter</a>
+            <a href="#" class="button">45 KiloMeter</a>
+        
+          </div>
+          <br> {% endcomment %}
+        
+          
+          <script>
+            function updateLocationFields(position) {
+              var latitudeField = document.getElementById("latitude1");
+              var longitudeField = document.getElementById("longitude1");
+          
+              latitudeField.value = position.coords.latitude;
+              longitudeField.value = position.coords.longitude;
+            }
+          
+            function handleLocationError(error) {
+              console.error("Error occurred while retrieving location:", error);
+              // Handle the error, display an error message, or fallback to a default location
+            }
+          
+            function getLocation() {
+              if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                  updateLocationFields,
+                  handleLocationError
+                );
+              } else {
+                console.log("Geolocation is not supported by this browser.");
+                // Handle the case where geolocation is not supported
+              }
+            }
+          
+            // Automatically update location fields when the page loads
+            getLocation();
+          </script>
+
+          <script>
+            function updateLocationFields(position) {
+              var latitudeField = document.getElementById("latitude2");
+              var longitudeField = document.getElementById("longitude2");
+          
+              latitudeField.value = position.coords.latitude;
+              longitudeField.value = position.coords.longitude;
+            }
+          
+            function handleLocationError(error) {
+              console.error("Error occurred while retrieving location:", error);
+              // Handle the error, display an error message, or fallback to a default location
+            }
+          
+            function getLocation() {
+              if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                  updateLocationFields,
+                  handleLocationError
+                );
+              } else {
+                console.log("Geolocation is not supported by this browser.");
+                // Handle the case where geolocation is not supported
+              }
+            }
+          
+            // Automatically update location fields when the page loads
+            getLocation();
+          </script>
+          <script>
+            function updateLocationFields(position) {
+              var latitudeField = document.getElementById("latitude3");
+              var longitudeField = document.getElementById("longitude3");
+          
+              latitudeField.value = position.coords.latitude;
+              longitudeField.value = position.coords.longitude;
+            }
+          
+            function handleLocationError(error) {
+              console.error("Error occurred while retrieving location:", error);
+              // Handle the error, display an error message, or fallback to a default location
+            }
+          
+            function getLocation() {
+              if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                  updateLocationFields,
+                  handleLocationError
+                );
+              } else {
+                console.log("Geolocation is not supported by this browser.");
+                // Handle the case where geolocation is not supported
+              }
+            }
+          
+            // Automatically update location fields when the page loads
+            getLocation();
+          </script>
+          <script>
+            function updateLocationFields(position) {
+              var latitudeField = document.getElementById("latitude4");
+              var longitudeField = document.getElementById("longitude4");
+          
+              latitudeField.value = position.coords.latitude;
+              longitudeField.value = position.coords.longitude;
+            }
+          
+            function handleLocationError(error) {
+              console.error("Error occurred while retrieving location:", error);
+              // Handle the error, display an error message, or fallback to a default location
+            }
+          
+            function getLocation() {
+              if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                  updateLocationFields,
+                  handleLocationError
+                );
+              } else {
+                console.log("Geolocation is not supported by this browser.");
+                // Handle the case where geolocation is not supported
+              }
+            }
+          
+            // Automatically update location fields when the page loads
+            getLocation();
+          </script>
+
+          <script>
+            function updateLocationFields(position) {
+              var latitudeField = document.getElementById("latitude5");
+              var longitudeField = document.getElementById("longitude5");
+          
+              latitudeField.value = position.coords.latitude;
+              longitudeField.value = position.coords.longitude;
+            }
+          
+            function handleLocationError(error) {
+              console.error("Error occurred while retrieving location:", error);
+              // Handle the error, display an error message, or fallback to a default location
+            }
+          
+            function getLocation() {
+              if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                  updateLocationFields,
+                  handleLocationError
+                );
+              } else {
+                console.log("Geolocation is not supported by this browser.");
+                // Handle the case where geolocation is not supported
+              }
+            }
+          
+            // Automatically update location fields when the page loads
+            getLocation();
+          </script>
+
+
+          <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRwBBlWfAchvrNXcaC41TS841fa5BJxH4&callback=initMap"></script>
+            <script>
+            function updateLocationFields(position) {
+              var latitudeField = document.getElementById("latitude6");
+              var longitudeField = document.getElementById("longitude6");
+          
+              latitudeField.value = position.coords.latitude;
+              longitudeField.value = position.coords.longitude;
+            }
+          
+            function handleLocationError(error) {
+              console.error("Error occurred while retrieving location:", error);
+              // Handle the error, display an error message, or fallback to a default location
+            }
+          
+            function getLocation() {
+              if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                  updateLocationFields,
+                  handleLocationError
+                );
+              } else {
+                console.log("Geolocation is not supported by this browser.");
+                // Handle the case where geolocation is not supported
+              }
+            }
+          
+            // Automatically update location fields when the page loads
+            getLocation();
+          </script>
+          <script>
+            function updateLocationFields(position) {
+              var latitudeField = document.getElementById("latitude7");
+              var longitudeField = document.getElementById("longitude7");
+          
+              latitudeField.value = position.coords.latitude;
+              longitudeField.value = position.coords.longitude;
+            }
+          
+            function handleLocationError(error) {
+              console.error("Error occurred while retrieving location:", error);
+              // Handle the error, display an error message, or fallback to a default location
+            }
+          
+            function getLocation() {
+              if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                  updateLocationFields,
+                  handleLocationError
+                );
+              } else {
+                console.log("Geolocation is not supported by this browser.");
+                // Handle the case where geolocation is not supported
+              }
+            }
+          
+            // Automatically update location fields when the page loads
+            getLocation();
+          </script>
+          <script>
+            function updateLocationFields(position) {
+              var latitudeField = document.getElementById("latitude8");
+              var longitudeField = document.getElementById("longitude8");
+          
+              latitudeField.value = position.coords.latitude;
+              longitudeField.value = position.coords.longitude;
+            }
+          
+            function handleLocationError(error) {
+              console.error("Error occurred while retrieving location:", error);
+              // Handle the error, display an error message, or fallback to a default location
+            }
+          
+            function getLocation() {
+              if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                  updateLocationFields,
+                  handleLocationError
+                );
+              } else {
+                console.log("Geolocation is not supported by this browser.");
+                // Handle the case where geolocation is not supported
+              }
+            }
+          
+            // Automatically update location fields when the page loads
+            getLocation();
+          </script>
+          <script>
+            function updateLocationFields(position) {
+              var latitudeField = document.getElementById("latitude9");
+              var longitudeField = document.getElementById("longitude9");
+          
+              latitudeField.value = position.coords.latitude;
+              longitudeField.value = position.coords.longitude;
+            }
+          
+            function handleLocationError(error) {
+              console.error("Error occurred while retrieving location:", error);
+              // Handle the error, display an error message, or fallback to a default location
+            }
+          
+            function getLocation() {
+              if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                  updateLocationFields,
+                  handleLocationError
+                );
+              } else {
+                console.log("Geolocation is not supported by this browser.");
+                // Handle the case where geolocation is not supported
+              }
+            }
+          
+            // Automatically update location fields when the page loads
+            getLocation();
+          </script>
+
+          <script>
+            function updateLocationFields(position) {
+              var latitudeField = document.getElementById("latitude10");
+              var longitudeField = document.getElementById("longitude10");
+          
+              latitudeField.value = position.coords.latitude;
+              longitudeField.value = position.coords.longitude;
+            }
+          
+            function handleLocationError(error) {
+              console.error("Error occurred while retrieving location:", error);
+              // Handle the error, display an error message, or fallback to a default location
+            }
+          
+            function getLocation() {
+              if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                  updateLocationFields,
+                  handleLocationError
+                );
+              } else {
+                console.log("Geolocation is not supported by this browser.");
+                // Handle the case where geolocation is not supported
+              }
+            }
+          
+            // Automatically update location fields when the page loads
+            getLocation();
+          </script>
+    </body>
+    </html>
+
+
+
+ 
+  

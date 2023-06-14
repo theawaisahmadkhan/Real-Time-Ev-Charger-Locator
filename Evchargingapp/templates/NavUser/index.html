@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta charset="UTF-8" />
+ 
+    <title>EV-Charging</title>
+      {% include  'NavUser/includesNav/css.html'  %}
+      <link rel="stylesheet" href={% static 'nav/home.css' %} />
+  </head>
+
+  <body>
+    
+    {% include  'NavUser/includesNav/header.html'  %}
+    
+    
+    <div>
+      <p class="about_heading">Welcome Back To Ev-Charging</p>
+    </div>
+    <div class="center">
+      <p class="about_text">
+        Your electric vehicles are the present and the future.
+        Range anxiety is the number one reason, after price, why drivers don’t switch to EVs.
+        So, that's why this website came into existence.
+      </p>
+    </div>
+
+    <div class="cta" onClick="scrollDown();">
+      <div class="btn">
+        <a></a><span>EXPLORE</span>
+      </div>
+    </div>
+
+    <div class="video_div">
+      <video class="video" autoplay muted loop>
+        <source src="https://res.cloudinary.com/rghosh/video/upload/v1649697508/Navic/cpo-city-animation_buykdt.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <div id="here">
+      <p class="navigator_heading" id="scroll">Worried about range ?</p>
+    </div>
+    <div class="center">
+      <p class="navigator_text">
+        EV journeys can be daunting. How should I charge, and where, or when? 
+        Our navigator will settle all these questions, guiding drivers along a safe and frictionless journey.
+      </p>
+    </div>
+
+    <div class="a_center">
+      <a class="nav_anchor" href="navigator.html" target="_blank">Check out our navigator</a>
+    </div>
+
+    <div class="img_div">
+      <img class="img_nav" src="https://res.cloudinary.com/rghosh/image/upload/v1649856249/Navic/in-car-routing_ldravr.jpg">
+    </div>
+
+    
+    <div>
+      <p class="navigator_heading">What about charging ?</p>
+    </div>
+    <div class="center">
+      <p class="navigator_text">
+        EV drivers need to know where your charge stations are located, and how to get there. 
+        Let's light up the map for our drivers.
+      </p>
+    </div>
+
+    <div class="a_center">
+      <a class="nav_anchor" href="stations.html" target="_blank">Check out our stations locator</a>
+    </div>
+
+    <div class="img_div">
+      <img class="img_nav" src="https://res.cloudinary.com/rghosh/image/upload/v1649857240/Navic/fleet-charging_hy4fte.jpg">
+    </div>
+
+    <div class="footer">
+      <a class="footer_text" href="#" target="_blank">
+        <a >&copy; 2021 All Rights Reserved By EV-Charging</a></a>
+    </div>
+    {% include  'NavUser/includesNav/js.html'  %}
+  </body>
+
+
+
+</html>

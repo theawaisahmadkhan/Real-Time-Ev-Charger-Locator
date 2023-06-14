@@ -1,0 +1,14 @@
+{% load static %}
+
+<header>
+    <img class="logo" src="" alt="logo">
+    <nav>
+        <ul class="nav_links">
+            <li><a href={% url 'navhome' %}>Home</a></li>
+            <li><a href={% url 'navigator' %}>Find Station</a></li>
+            <li><a href={% url 'station' %}>Stations</a></li>
+            <li><a href={% url 'booking' %}>Booking</a></li>
+            {% comment %} <li><a href={% url 'profile' %}>Profile</a></li> {% endcomment %}
+        </ul>
+    </nav>
+  </header>  
