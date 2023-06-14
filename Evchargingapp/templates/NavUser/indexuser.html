@@ -1,4 +1,5 @@
 {% load static %}
+{% comment %} {% load messages %} {% endcomment %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -8,10 +9,12 @@
     <title>EV-Charging</title>
       {% include  'NavUser/includesNav/css.html'  %}
       <link rel="stylesheet" href={% static 'nav/home.css' %} />
+      <link rel="stylesheet" href={% static 'nav/navigator.css' %} />
   </head>
 
   <body>
-      
+   
+
     {% include  'NavUser/includesNav/header.html'  %}
     <div>
       <p class="about_heading">Welcome Back To Ev-Charging</p>

@@ -1,0 +1,144 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta charset="UTF-8" />
+    {% comment %} <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/> {% endcomment %}
+    {% comment %} <meta property="og:title" content="Navigation for Electric Vehicles"> {% endcomment %}
+    
+    <title>EV-Charging</title>
+    {% include 'NavUser/includesNav/css.html' %}
+    <link rel="stylesheet" href="{% static 'nav/home.css' %}" />
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid red;
+      }
+
+      th, td {
+        text-align: left;
+        padding: 8px;
+      }
+
+      th {
+        background-color: #f2f2f2;
+        
+      }
+
+    tr{
+      background-color: lightgrey;
+      
+      } 
+     
+      {% comment %} a{
+        color:black;
+      } {% endcomment %}
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      .fa-star {
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    .checked {
+        color: orange;
+    }
+    </style>
+    <link rel="stylesheet" href={% static 'nav/navigator.css' %} />
+  </head>
+
+  <body>
+    
+    {% include 'NavUser/includesNav/header.html' %}
+    <div>
+      <p class="about_heading">Welcome Back To Ev-Charging</p>
+    </div>
+
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th> Name</th>
+            <th>Station id</th>
+            <th>Bill</th>
+            <th>Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+         {% for i in books %}
+          <tr>
+            <td><a style=" color:black;" href="#">{{i.username}}</a></td>
+            <td><a style=" color:black;" href="#"> {{i.stationid}}</a></td>
+            <td><a style=" color:black;" href="#">{{i.amount}}</a></td>
+            <td>
+              
+              <form  action={% url 'rating' %} method="POST">
+                {% csrf_token %}
+                {% if i.rating > 0%}
+                
+                <input type="text" name="userid" value="{{ i.userid }}" hidden readonly>
+                <input  type="text" name="stationid" value="{{ i.stationid }}" hidden readonly>
+                <input  type="text" name="billid" value="{{ i.id }}" hidden readonly>
+                <input class="selectedRating" type="text" name="rating" value="{{ i.rating }}/5" readonly>
+                {% else %}
+                
+                    <select style="color:black" class="selectedRating" name="rating">
+                        <option style="color:white" value="1">1 star</option>
+                        <option style="color:white" value="2">2 stars</option>
+                        <option style="color:white" value="3">3 stars</option>
+                        <option style="color:white" value="4">4 stars</option>
+                        <option  style="color:white" value="5">5 stars</option>
+                    </select>
+                    <input  type="text" name="userid" value="{{ i.userid }}" hidden readonly>
+                <input  type="text" name="stationid" value="{{ i.stationid }}" hidden readonly>
+                <input  type="text" name="billid" value="{{ i.id }}" hidden readonly>
+                <input type="submit" value="Submit Rating">
+                {% endif %}
+                
+            </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="footer">
+        <a class="footer_text" href="#" target="_blank">
+          <a >&copy; 2021 All Rights Reserved By EV-Charging</a></a>
+      </div>
+      <script>
+        const ratingForms = document.querySelectorAll('.ratingForm');
+        ratingForms.forEach(form => {
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const selectedRating = form.querySelector('.selectedRating').value;
+                console.log("Selected Rating: " + selectedRating);
+                // You can perform further actions with the selected rating, such as sending it to a server using AJAX.
+                // Here, we are simply logging the selected rating to the console.
+            });
+        });
+
+        function updateRating(rating, star) {
+            const ratingContainer = star.parentNode;
+            const stars = ratingContainer.querySelectorAll('.fa-star');
+            for (let i = 0; i < stars.length; i++) {
+                if (i < rating) {
+                    stars[i].classList.add('checked');
+                } else {
+                    stars[i].classList.remove('checked');
+                }
+            }
+            const form = ratingContainer.parentNode.querySelector('.ratingForm');
+            const selectedRatingInput = form.querySelector('.selectedRating');
+            selectedRatingInput.value = rating;
+        }
+    </script>
+    {% include 'NavUser/includesNav/js.html' %}
+  </body>
+</html>
+

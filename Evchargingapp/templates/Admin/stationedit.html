@@ -127,17 +127,23 @@
               <label for="timing" style="color:white" hidden>Email:</label>
               <input type="text" class="form-control" id="timing" name="email" value="{{station.user_email}}"  hidden>
             </div>
+            <div class="form-group">
+              <label for="timing" style="color:white" hidden>Password:</label>
+              <input type="text" class="form-control" id="timing" name="password"   value="{{station.password}}" hidden>
+            </div> 
             {% else %}
             <div class="form-group">
               <label for="timing" style="color:white">Email:</label>
               <input type="text" class="form-control" id="timing" name="email"  required>
+
             </div>
-           {% endif %}
-           
-            {% comment %} <div class="form-group">
+            <div class="form-group">
               <label for="timing" style="color:white">Password:</label>
               <input type="text" class="form-control" id="timing" name="password" >
-            </div> {% endcomment %}
+            </div> 
+           {% endif %}
+           
+             
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
             

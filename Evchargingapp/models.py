@@ -38,8 +38,13 @@ class UserBill(models.Model):
     userid = models.IntegerField()
     stationid = models.IntegerField()
     date = models.DateField(auto_now_add=True)
-    time = models.TimeField(auto_now_add=True)  
-      
+    time = models.TimeField(auto_now_add=True) 
+    rating = models.IntegerField(max_length=10, null=True, default=None)  
+class Rating(models.Model):
+    user_id = models.IntegerField()
+    station_id = models.IntegerField()
+    bill_id = models.IntegerField()
+    rating_number = models.IntegerField()     
 class Booking(models.Model):
     id = models.AutoField(primary_key=True, unique=True)
 

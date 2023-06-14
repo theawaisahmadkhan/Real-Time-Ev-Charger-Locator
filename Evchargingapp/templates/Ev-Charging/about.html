@@ -18,7 +18,18 @@
 </head>
 
 <body class="sub_page">
-
+  {% if messages %}
+  <ul class="messages">
+      {% for message in messages %}
+          {% if forloop.last %}
+              <li style="padding: 10px; margin-bottom: 10px; border-radius: 5px; 
+                  color: #fff; font-weight: bold; background-color: {% if message.tags == 'success' %}green{% else %}red{% endif %};">
+                  {{ message }}
+              </li>
+          {% endif %}
+      {% endfor %}
+  </ul>
+{% endif %}
   <div class="hero_area">
     <!-- header section strats -->
     {% include 'Ev-Charging/includesfile/header.html' %}

@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from . import views
+# from Evchargingapp.session_middleware import SessionMiddleware
+
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
@@ -36,9 +38,13 @@ urlpatterns = [
        path('signup',views.signup,name="signup"),
        path('usersignup',views.usersignup,name="usersignup"),
        path('booking',views.booking,name="booking"),
+       path('bookingrating',views.bookingrating,name="bookingrating"),
        path('profile',views.profile,name="profile"),
        path('manageuser',views.manageuser,name="manageuser"),
        path('manageusers',views.manageusers,name="manageusers"),
+        path('rating',views.rating,name="rating"),
+          path('changepassworduser',views.changepassworduser,name="changepassworduser"),
+           path('changepassworduserupdate',views.changepassworduserupdate,name="changepassworduserupdate"),
          path('stationedit/<int:value>/',views.stationedit,name="stationedit"),
 path('addstation',views.addstation,name="addstation"),
 path('addstationdetails',views.addstationdetails,name="addstationdetails"),
@@ -53,7 +59,11 @@ path('checkstation',views.checkstation,name="checkstation"),
 path('bill/<int:value>/',views.bill,name="bill"),
 path('completecharging',views.completecharging,name="completecharging"),
 path('earning',views.earning,name="earning"),
+path('homeadmin',views.homeadmin,name="homeadmin"),
+path('homestation',views.homestation,name="homestation"),
+
 path('earningstation',views.earningstation,name="earningstation"),
+path('ratingstation',views.ratingstation,name="ratingstation"),
 path('totalearning',views.totalearning,name="totalearning"),
 path('bookingev',views.bookingev,name="bookingev"),
 path('adminbookingev',views.adminbookingev,name="adminbookingev"),

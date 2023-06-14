@@ -15,6 +15,7 @@
       table {
         border-collapse: collapse;
         width: 100%;
+        border: 1px solid red;
       }
 
       th, td {
@@ -24,15 +25,22 @@
 
       th {
         background-color: #f2f2f2;
+        
       }
 
-      tr:nth-child(even) {
-        background-color: #f2f2f2;
-      }
+    tr{
+      background-color: lightgrey;
+      
+      } 
+      {% comment %} a{
+        color:black;
+      } {% endcomment %}
     </style>
+    <link rel="stylesheet" href={% static 'nav/navigator.css' %} />
   </head>
 
   <body>
+    
     {% include 'NavUser/includesNav/header.html' %}
     <div>
       <p class="about_heading">Welcome Back To Ev-Charging</p>
@@ -51,11 +59,11 @@
         <tbody>
          {% for i in books %}
           <tr>
-            <td><a href="#">{{i.add_station.station_name}}</a></td>
-            <td><a href="#"> {{i.add_station.location_city}}</a></td>
-            <td><a href="#">{{i.add_station.owner_name}}</a></td>
+            <td><a style=" color:black;" href="#">{{i.add_station.station_name}}</a></td>
+            <td><a style=" color:black;" href="#"> {{i.add_station.location_city}}</a></td>
+            <td><a style=" color:black;" href="#">{{i.add_station.owner_name}}</a></td>
             <td>
-              <a href="{% url 'cancelbookingev' i.id %}">Cancel</a>
+              <a style=" color:black;" href="{% url 'cancelbookingev' i.id %}">Cancel</a>
             </td>
           </tr>
           {% endfor %}

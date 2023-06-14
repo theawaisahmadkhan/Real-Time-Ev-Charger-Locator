@@ -103,10 +103,11 @@
             background-color: #1976d2;
           }
     </style>
-    {% include  'Admin/includefiles/css.html'  %}
+
+    {% include  'AdminStation/includefiles/css.html'  %}
 </head>
 <body>
-  {% include  'Admin/includefiles/sidebar.html'  %}
+    {% include  'AdminStation/includefiles/sidebar.html'  %}
     <div id="content" style="position: fixed;
     top: 90px;
     bottom: 20px;
@@ -118,29 +119,31 @@
             <table>
               <thead>
                 <tr>
-                  <th> Station Name</th>
-                  <th>Email</th>
-                  <th>Slot</th>
+                  <th> Userid</th>
+                  <th>UserName</th>
+                  <th>Date/Time</th>
+                  <th>Earn</th>
                   <th>Rating</th>
                   
-                  <th>Delete Stations</th>
                 </tr>
               </thead>
               <tbody>
-                {% for st, rate in station %}
+                {% for i in earnings %}
                 <tr>
-                  <td><a href="#">{{st.station_name}}</a></td>
-                  <td><a href="#">{{st.user_email}}</a></td>
-                  <td><a href="#">{{st.slots_number}}</a></td>
-                  <td><a href="#">{{rate}}</a></td>
-                  <td><a href="{% url 'stationedit' st.id %}">Edit</a>/<a href="{% url 'deletestations' st.id %}">Delete</a></td>
-                
+                  <td><a href="#">{{i.userid}}</a></td>
+                  <td><a href="#">{{i.username}}</a></td>
+                  <td><a href="#">{{i.date}}/{{i.time}}</a></td>
+                  <td><a href="#">{{i.amount}}</a></td>
+                  <td><a href="#">{{i.rating}} Star</a></td>
+                 
+                 
                 </tr>
                 {% endfor %}
+                
               </tbody>
             </table>
           </div>
-    
+   
     </div>
 </body>
 </html>

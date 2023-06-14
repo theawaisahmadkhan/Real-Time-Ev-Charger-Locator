@@ -50,7 +50,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'django.contrib.messages.middleware.MessageMiddleware',
+    # 'Evchargingapp.session_middleware.SessionMiddleware'
+    # 'django.contrib.sessions.middleware.SessionMiddleware',
 ]
+
+LOGIN_URL = 'loginsignup'
 
 ROOT_URLCONF = 'evcharging.urls'
 
