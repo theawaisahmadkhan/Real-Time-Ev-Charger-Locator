@@ -51,3 +51,5 @@ We welcome contributions to the Real Time EV Charging Locator application. If yo
 Fork the repository and create a new branch for your feature/fix.
 Make your changes and ensure the code passes all tests.
 Submit a pull request explaining the changes you've made.
+
+The application is in active development. Contributions, suggestions, and issue reports are welcome and appreciated. 🙌
