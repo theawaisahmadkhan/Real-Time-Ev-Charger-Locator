@@ -72,13 +72,13 @@
           <br />
     
           <div class="container">
-            <button  onclick="calculateDistanceAndTime()">GO</button>
+            {% comment %} <button  onclick="calculateDistanceAndTime()">GO</button> {% endcomment %}
             <button type="reset">Clear</button>
             <button type="submit" >Booking</button>
           </div>
 
         </form>
-        {% include  'NavUser/includesNav/filter.html'  %}
+        {% include  'NavUserAdmin/includesNav/filter.html'  %}
         </div>
         {% for i in locate %}
         <div class="location-div" hidden >

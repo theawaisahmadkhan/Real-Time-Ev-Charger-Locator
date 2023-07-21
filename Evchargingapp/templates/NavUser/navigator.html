@@ -49,36 +49,53 @@
    
   <body>
     {% include  'NavUser/includesNav/header.html'  %}
-
+    <script>
+      document.getElementById("booking-form").addEventListener("submit", function(event) {
+        var destination = document.getElementById("destination");
+        if (destination.value === "---Choose Destination---") {
+          event.preventDefault(); // Prevent form submission
+          alert("Please choose a destination.");
+        }
+      });
+    </script>
     <div id="row">
       
-      <form action="{% url 'bookingev' %}" method="POST">
+      <form id="booking-form" action="{% url 'bookingev' %}" method="POST">
         {% csrf_token %}
-        <div id="leftcolumn"> <!-- LEFT COLUMN -->
+        <div id="leftcolumn">
           <div id="source_div" class="container">
-            <label for="latitude" hidden >Latitude:</label>
+            <label for="latitude" hidden>Latitude:</label>
             <input type="text" id="latitude44" name="latitude" hidden readonly>
             <br>
             <label for="longitude" hidden>Longitude:</label>
-            <input type="text" id="longitude44" name="longitude" hidden  readonly>
+            <input type="text" id="longitude44" name="longitude" hidden readonly>
           </div>
           <div id="destination_div" class="container">
             <select id="destination" name="destination">
               <option disabled selected>---Choose Destination---</option>
-              {% for i  in locate %}
+              {% for i in locate %}
               <option value="{{i.station_name}}">{{i.station_name}}</option>
               {% endfor %}
             </select>
           </div>
           <br />
-    
           <div class="container">
-            <button  onclick="calculateDistanceAndTime()">GO</button>
             <button type="reset">Clear</button>
-            <button type="submit" >Booking</button>
+            <button type="submit">Booking</button>
           </div>
-
-        </form>
+        {% comment %} </div> {% endcomment %}
+      </form>
+      
+      <script>
+        document.getElementById("booking-form").addEventListener("submit", function(event) {
+          var destination = document.getElementById("destination");
+          if (destination.value === "---Choose Destination---") {
+            event.preventDefault(); // Prevent form submission
+            alert("Please choose a destination.");
+          }
+        });
+      </script>
+      
         {% include  'NavUser/includesNav/filter.html'  %}
         </div>
         {% for i in locate %}

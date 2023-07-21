@@ -36,37 +36,37 @@
 </head>
     <body>
        
-            <lable style="color:white">Time:</lable>
+            <lable style="color:white;margin-left:20px">Time:</lable>
             <div class="container">
-                <div class="box"><form action="{% url 'filter' %}" method="POST" >
+                <div class="box"><form action="{% url 'filteradmin' %}" method="POST" >
                     {% csrf_token %}
                     <input type="text" id="latitude1" name="latitude" hidden readonly>
                     <input type="text" id="longitude1" name="longitude" hidden readonly>
                     <input type="text" id="minute" name="minute" value=5 hidden readonly>
                     <button style="width:140px;height:40px " type="submit">5 Minute</button>
                   </form></div>
-  <div class="box"><form action="{% url 'filter' %}" method="POST" >
+  <div class="box"><form action="{% url 'filteradmin' %}" method="POST" >
     {% csrf_token %}
     <input type="text" id="latitude2" name="latitude" hidden readonly>
     <input type="text" id="longitude2" name="longitude" hidden readonly>
     <input type="text" id="minute" name="minute" value=15 hidden readonly>
     <button style="width:140px;height:40px "  type="submit">15 Minute</button>
   </form></div>
-  <div class="box">  <form action="{% url 'filter' %}" method="POST">
+  <div class="box">  <form action="{% url 'filteradmin' %}" method="POST">
     {% csrf_token %}
     <input type="text" id="latitude3" name="latitude" hidden readonly>
     <input type="text" id="longitude3" name="longitude" hidden readonly>
     <input type="text" id="minute" name="minute" value=25 hidden readonly>
     <button style="width:140px;height:40px "  type="submit">25 Minute</button>
   </form></div>
-  <div class="box"><form action="{% url 'filter' %}" method="POST">
+  <div class="box"><form action="{% url 'filteradmin' %}" method="POST">
     {% csrf_token %}
     <input type="text" id="latitude4" name="latitude" hidden readonly>
     <input type="text" id="longitude4" name="longitude" hidden readonly>
     <input type="text" id="minute" name="minute" value=35 hidden readonly>
     <button style="width:160px;height:40px "  type="submit">35 Minute</button>
   </form></div>
-  <div class="box"><form action="{% url 'filter' %}" method="POST">
+  <div class="box"><form action="{% url 'filteradmin' %}" method="POST">
     {% csrf_token %}
     <input type="text" id="latitude5" name="latitude" hidden readonly>
     <input type="text" id="longitude5" name="longitude" hidden readonly>
@@ -79,37 +79,37 @@
 
 
               
-              <lable style="color:white">Distance:</lable>
+              <lable style="color:white;margin-left:20px">Distance:</lable>
             <div class="container">
-                <div class="box"><form action="{% url 'filterdistance' %}" method="POST" >
+                <div class="box"><form action="{% url 'filterdistanceadmin' %}" method="POST" >
                     {% csrf_token %}
                     <input type="text" id="latitude6" name="latitude" hidden readonly>
                     <input type="text" id="longitude6" name="longitude" hidden readonly>
                     <input type="text" id="minute" name="minute" value=5 hidden readonly>
                     <button style="width:140px;height:40px " type="submit">5 km</button>
                   </form></div>
-  <div class="box"><form action="{% url 'filterdistance' %}" method="POST" >
+  <div class="box"><form action="{% url 'filterdistanceadmin' %}" method="POST" >
     {% csrf_token %}
     <input type="text" id="latitude7" name="latitude" hidden readonly>
     <input type="text" id="longitude7" name="longitude" hidden readonly>
     <input type="text" id="minute" name="minute" value=15 hidden readonly>
     <button style="width:140px;height:40px "  type="submit">15 km</button>
   </form></div>
-  <div class="box">  <form action="{% url 'filterdistance' %}" method="POST">
+  <div class="box">  <form action="{% url 'filterdistanceadmin' %}" method="POST">
     {% csrf_token %}
     <input type="text" id="latitude8" name="latitude" hidden readonly>
     <input type="text" id="longitude8" name="longitude" hidden readonly>
     <input type="text" id="minute" name="minute" value=25 hidden readonly>
     <button style="width:140px;height:40px "  type="submit">25 km</button>
   </form></div>
-  <div class="box"><form action="{% url 'filterdistance' %}" method="POST">
+  <div class="box"><form action="{% url 'filterdistanceadmin' %}" method="POST">
     {% csrf_token %}
     <input type="text" id="latitude9" name="latitude" hidden readonly>
     <input type="text" id="longitude9" name="longitude" hidden readonly>
     <input type="text" id="minute" name="minute" value=35 hidden readonly>
     <button style="width:160px;height:40px "  type="submit">35 km</button>
   </form></div>
-  <div class="box"><form action="{% url 'filterdistance' %}" method="POST">
+  <div class="box"><form action="{% url 'filterdistanceadmin' %}" method="POST">
     {% csrf_token %}
     <input type="text" id="latitude10" name="latitude" hidden readonly>
     <input type="text" id="longitude10" name="longitude" hidden readonly>

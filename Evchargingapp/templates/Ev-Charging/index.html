@@ -109,8 +109,7 @@
               EV-Charge Company
             </h2>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniaLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniamm
-            </p>
+              As the world moves towards sustainable transportation, electric vehicles (EVs) have gained immense popularity. With their eco-friendly nature and cost-effective benefits, EVs are revolutionizing the way we commute. However, to ensure a seamless driving experience, the availability of efficient and reliable EV charging infrastructure is crucial. This is where our EV charging website comes into play, providing you with the tools and information to make your charging journey a breeze. </p>
             <a href="">
               Read More
             </a>
@@ -127,55 +126,9 @@
 
   <!-- end about section -->
 
-  <!-- service section -->
 
-  <section class="service_section layout_padding">
-    <div class="container">
-      <div class="heading_container">
-        <h2>
-          Our <br>
-          EV-Charge Services
-        </h2>
-      </div>
-      <div class="service_container">
-        <div class="box">
-          <div class="img-box">
-            <img src="images/slider-img.jpg" alt="">
-          </div>
-          <div class="detail-box">
-            <h5>
-              Charging Stations
-            </h5>
-            <p>
-              Lorem ipsum dolor sit ame
-            </p>
-            <a href="">
-              Read More
-            </a>
-          </div>
-        </div>
-        <div class="box">
-          <div class="img-box">
-            <img src="images/slider-img.jpg" alt="">
-          </div>
-          <div class="detail-box">
-            <h5>
-              Home Charging Stations
-            </h5>
-            <p>
-              Lorem ipsum dolor sit ame
-            </p>
-            <a href="">
-              Read More
-            </a>
-          </div>
-        </div>
-        
-      </div>
-    </div>
-  </section>
 
-  <!-- end service section -->
+ 
 
   <!-- news section -->
 
@@ -190,55 +143,47 @@
       <div class="news_container">
         <div class="box">
           <div class="date-box">
-            <h6>
-              01 Nov 2019
-            </h6>
+           
           </div>
           <div class="img-box">
             <img src="images/news-img.jpg" alt="">
           </div>
           <div class="detail-box">
             <h6>
-              Eiusmod tempor incididunt
+              Charging Station Information
             </h6>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            </p>
+              We provide detailed information about each charging station, such as the type of connectors available, charging speeds, availability status, and payment methods accepted. This empowers EV owners to make informed decisions and find the most suitable charging options.</p>
           </div>
         </div>
         <div class="box">
           <div class="date-box">
-            <h6>
-              01 Nov 2019
-            </h6>
+           
           </div>
           <div class="img-box">
             <img src="images/news-img.jpg" alt="">
           </div>
           <div class="detail-box">
             <h6>
-              Eiusmod tempor incididunt
+              Environmental Benefits
             </h6>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            </p>
+              By promoting the adoption of electric vehicles, we contribute to a cleaner and greener future. EVs produce zero tailpipe emissions, reducing greenhouse gas emissions and air pollution. Our website aims to accelerate this positive environmental impact by facilitating the widespread availability of charging infrastructure.</p>
           </div>
         </div>
         <div class="box">
           <div class="date-box">
-            <h6>
-              01 Nov 2019
-            </h6>
+            
           </div>
           <div class="img-box">
             <img src="images/news-img.jpg" alt="">
           </div>
           <div class="detail-box">
             <h6>
-              Eiusmod tempor incididunt
+              Comprehensive Charging Solutions
             </h6>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+              nteractive Charging Map: Our website features an interactive map that displays the locations of various charging stations, including public, private, and fast-charging options. Users can search for stations based on their location, specific requirements, and preferred charging speeds.
             </p>
           </div>
         </div>
@@ -354,7 +299,7 @@
     <div class="container">
       <div class="box">
         <div class="info_form">
-          <h4>
+          {% comment %} <h4>
             Subscribe Our Newsletter
           </h4>
           <form action="">
@@ -364,27 +309,27 @@
 
               </button>
             </div>
-          </form>
+          </form> {% endcomment %}
         </div>
         <div class="info_links">
           <ul>
             <li class=" ">
-              <a class="" href="index.html">Home <span class="sr-only">(current)</span></a>
+              <a class="" href={% url 'home' %} >Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="">
-              <a class="" href="about.html"> About</a>
+              <a class="" href={% url 'about' %}> About</a>
             </li>
             <li class="">
-              <a class="" href="service.html"> Services </a>
+              <a class="" href={% url 'services' %}> Services </a>
             </li>
             <li class="">
-              <a class="" href="news.html"> News</a>
+              <a class="" href={% url 'news' %}> News</a>
             </li>
             <li class="">
-              <a class="" href="contact.html">Contact Us</a>
+              <a class="" href={% url 'contact' %}>Contact Us</a>
             </li>
             <li class="">
-              <a class="" href="#">Login</a>
+              <a class="" href={% url 'loginsignup' %}>Login</a>
             </li>
           </ul>
         </div>

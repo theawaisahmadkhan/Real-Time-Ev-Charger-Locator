@@ -113,12 +113,13 @@
     left: 270px;
     right: 0; /* Adjust if necessary */
     margin: auto;">
-        <h1 style="color:white">Welcome to the Admin Dashboard</h1>
+        <h1 style="color:white">Station</h1>
         <div>
             <table>
               <thead>
                 <tr>
                   <th> Station Name</th>
+                  <th> Station Type</th>
                   <th>Email</th>
                   <th>Slot</th>
                   <th>Rating</th>
@@ -130,6 +131,7 @@
                 {% for st, rate in station %}
                 <tr>
                   <td><a href="#">{{st.station_name}}</a></td>
+                  <td><a href="#">{{st.type}}</a></td>
                   <td><a href="#">{{st.user_email}}</a></td>
                   <td><a href="#">{{st.slots_number}}</a></td>
                   <td><a href="#">{{rate}}</a></td>

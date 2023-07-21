@@ -78,7 +78,7 @@
   <section class="info_section layout_padding-top layout_padding2-bottom">
     <div class="container">
       <div class="box">
-        <div class="info_form">
+        {% comment %} <div class="info_form">
           <h4>
             Subscribe Our Newsletter
           </h4>
@@ -90,26 +90,26 @@
               </button>
             </div>
           </form>
-        </div>
+        </div> {% endcomment %}
         <div class="info_links">
           <ul>
             <li class=" ">
-              <a class="" href="index.html">Home <span class="sr-only">(current)</span></a>
+              <a class="" href={% url 'home' %} >Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="">
-              <a class="" href="about.html"> About</a>
+              <a class="" href={% url 'about' %}> About</a>
             </li>
             <li class="">
-              <a class="" href="service.html"> Services </a>
+              <a class="" href={% url 'services' %}> Services </a>
             </li>
             <li class="">
-              <a class="" href="news.html"> News</a>
+              <a class="" href={% url 'news' %}> News</a>
             </li>
             <li class="">
-              <a class="" href="contact.html">Contact Us</a>
+              <a class="" href={% url 'contact' %}>Contact Us</a>
             </li>
             <li class="">
-              <a class="" href="#">Login</a>
+              <a class="" href={% url 'loginsignup' %}>Login</a>
             </li>
           </ul>
         </div>

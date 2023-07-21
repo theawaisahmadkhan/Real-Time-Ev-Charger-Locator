@@ -82,7 +82,7 @@
             <br />
       
             <div class="container">
-              <button  onclick="calculateDistanceAndTime()">GO</button>
+              {% comment %} <button  onclick="calculateDistanceAndTime()">GO</button> {% endcomment %}
               <button type="reset">Clear</button>
               <button type="submit" >Booking</button>
             </div>
@@ -91,11 +91,12 @@
         
       <div id="rightcolumn">    <!-- RIGHT COLUMN -->
         <p id="routeDisplay" class="container"></p>
-        <p id="stationDisplay" class="container">Lahore</p>
+        <p id="stationDisplay" class="container">{{type.location_city}}</p>
         <p id="distanceDisplay" class="container">Route Length: {{distances}} km</p>
         <p id="timeDisplay" class="container"> Estimated Time Hourse:  {{times}}</p>
         <p style="color: #ededed;" id="bookingslots" class="container">Total Booking Slots: {{slot}}</p>  
         <p style="color: #ededed;" id="bookingslots1" class="container"> Booking Availiable Slots</p>
+        <p style="color:Red" id="stationDisplay" class="container">This Station Type is: {{type.type}} </p>
         <button><a id="bookingslots2" href={% url 'bookingevdone' id %}>Book</a></button>
     </div>
     </div>

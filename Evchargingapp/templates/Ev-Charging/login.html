@@ -274,19 +274,21 @@ footer a {
 {% endif %}
     <div class="container" id="container">
 	
-	
+		<script src="//code.tidio.co/ecxjaglbbh8wrktxnsjdc9hrnehu1xae.js" async></script>
 	<div class="overlay-container">
 		<div class="overlay">
 			<div class="overlay-panel overlay-right">
 				<h1>EV-Charging</h1>
 				<p>Enter your personal details and start journey with us</p>
-				<button  id="signUp"><a href={% url 'userlogin' %}>User</a></button>
+				<button  id="signUp"><a style="color:white" href={% url 'userlogin' %}>User</a></button>
 				<br>
-				<button id="station"><a href={% url 'stationlogin' %}>Admin</a></button>
+				<button id="station"><a style="color:white" href={% url 'stationlogin' %}>Admin</a></button>
 				<br>
-				<button id="station"><a href={% url 'stationloginuser' %}>Station</a></button>
+				<button id="station"><a style="color:white" href={% url 'stationloginuser' %}>Station</a></button>
                 <br>
-                <button id="home"><a href={% url 'home' %}>Home</a></button>
+				<button id="station"><a style="color:white" href={% url 'homeloginuser' %}>Home Services</a></button>
+                <br>
+                <button id="home"><a style="color:white" href={% url 'home' %}>Home</a></button>
 			</div>
 		</div>
 	</div>

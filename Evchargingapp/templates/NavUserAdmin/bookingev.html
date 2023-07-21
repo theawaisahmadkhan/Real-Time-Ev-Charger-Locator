@@ -59,7 +59,7 @@
 
     <div id="row">
          <!-- LEFT COLUMN -->
-        <form action="{% url 'bookingev' %}" method="POST">
+        <form action="{% url 'adminbookingev' %}" method="POST">
           {% csrf_token %}
           <div id="leftcolumn"> <!-- LEFT COLUMN -->
             <div id="source_div" class="container">
@@ -80,7 +80,7 @@
             <br />
       
             <div class="container">
-              <button  onclick="calculateDistanceAndTime()">GO</button>
+              {% comment %} <button  onclick="calculateDistanceAndTime()">GO</button> {% endcomment %}
               <button type="reset">Clear</button>
               <button type="submit" >Booking</button>
             </div>
@@ -89,11 +89,13 @@
         
       <div id="rightcolumn">    <!-- RIGHT COLUMN -->
         <p id="routeDisplay" class="container"></p>
-        <p id="stationDisplay" class="container">Lahore</p>
+        <p id="stationDisplay" class="container">{{type.location_city}}</p>
+       
         <p id="distanceDisplay" class="container">Route Length: {{distances}} km</p>
         <p id="timeDisplay" class="container"> Estimated Time Hourse:  {{times}}</p>
         <p style="color: #ededed;" id="bookingslots" class="container">Total Booking Slots: {{slot}}</p>  
         <p style="color: #ededed;" id="bookingslots1" class="container"> Booking Availiable Slots</p>
+        <p style="color:Red" id="stationDisplay" class="container">This Station Type is: {{type.type}} </p>
         {% comment %} <button><a id="bookingslots2" href={% url 'bookingevdone' id %}>Book</a></button> {% endcomment %}
     </div>
     </div>

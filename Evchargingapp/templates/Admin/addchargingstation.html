@@ -79,9 +79,9 @@
     left: 270px;
     right: 0; /* Adjust if necessary */
     margin: auto;">
-        <h1 style="color:white">Welcome to the Admin Dashboard</h1>
+        <h1 style="color:white">Add Charging Station</h1>
        
-        <form action="{% url 'addstationdetails' %}" method="POST">
+        <form  id="addStationForm" action="{% url 'addstationdetails' %}" method="POST">
           {% csrf_token %}
             <div class="form-group">
               <label for="stationName" style="color:white">Station Name:</label>
@@ -130,6 +130,56 @@
           </form>
             
     </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Retrieve the form element
+        var form = document.getElementById('addStationForm');
+    
+        // Add event listener to form submit event
+        form.addEventListener('submit', function(event) {
+          // Prevent the form from submitting if validation fails
+          if (!validateForm()) {
+            event.preventDefault();
+          }
+        });
+    
+        // Function to validate the form
+        function validateForm() {
+          var stationName = document.getElementById('stationName').value;
+          var location = document.getElementById('location').value;
+          var latitude = parseFloat(document.getElementById('latitude').value);
+          var longitude = parseFloat(document.getElementById('longitude').value);
+          var ownerName = document.getElementById('ownerName').value;
+          var slotsNumber = parseInt(document.getElementById('slotsNumber').value);
+    
+          // Perform individual field validations
+          if (stationName.trim() === '') {
+            alert('Please enter a valid station name.');
+            return false;
+          }
+          if (location.trim() === '') {
+            alert('Please enter a valid location. Lahore');
+            return false;
+          }
+          if (isNaN(latitude) || isNaN(longitude)) {
+            alert('Please enter valid latitude and longitude.Will be Float 11.1254');
+            return false;
+          }
+          if (ownerName.trim() === '') {
+            alert('Please enter a valid owner name.');
+            return false;
+          }
+          if (isNaN(slotsNumber)) {
+            alert('Please enter a valid slots number. 1,2,3');
+            return false;
+          }
+    
+          // All validations passed
+          return true;
+        }
+      });
+    </script>
+    
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
 </body>

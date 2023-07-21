@@ -1,4 +1,6 @@
-from datetime import date, timezone
+from datetime import date, timedelta, timezone
+from django.utils import timezone
+from datetime import timedelta
 import datetime
 import json
 import math
@@ -47,6 +49,8 @@ def stationlogin(request):
     return render(request,'Ev-Charging/login-signup.html')
 def stationloginuser(request):
     return render(request,'Ev-Charging/login-signup copy 2.html')
+def homeloginuser(request):
+    return render(request,'Ev-Charging/login-signup copy 3.html')
 
 def loginsignup(request):
     return render(request,'Ev-Charging/login.html')
@@ -83,7 +87,7 @@ def loginstationuser(request):
     
     else:
      try:
-       user=AddStation.objects.get(user_email=your_name,password=your_pass)
+       user=AddStation.objects.get(user_email=your_name,password=your_pass,type="station")
        request.session['email'] = your_name
        request.session['id'] = user.id
     #    users = authenticate(request, username=user.username, password=user.password)
@@ -97,7 +101,29 @@ def loginstationuser(request):
         messages.error(request, 'User Not Exist Please Check Email and Password')
         return render(request,'Ev-Charging/login-signup copy 2.html')
         return render(request,'Ev-Charging/login-signup.html')
-
+def loginhomeuser(request):
+    your_name = request.GET.get('email')
+    your_pass = request.GET.get('your_pass')
+    
+    id = request.session.get('id')
+    if id:
+        return render(request,'NavUserStation/index.html')
+    
+    else:
+     try:
+       user=AddStation.objects.get(user_email=your_name,password=your_pass,type="Home")
+       request.session['email'] = your_name
+       request.session['id'] = user.id
+    #    users = authenticate(request, username=user.username, password=user.password)
+    #    login(request, users)
+         
+       messages.success(request, 'Your Login success')
+       return render(request,'NavUserStation/index.html')
+    
+     except:
+          
+        messages.error(request, 'User Not Exist Please Check Email and Password')
+        return render(request,'Ev-Charging/login-signup copy 2.html')
 def loginuser(request):
     your_name = request.GET.get('email')
     your_pass = request.GET.get('your_pass')
@@ -109,7 +135,7 @@ def loginuser(request):
     
     else:
      try:
-       user=EVUser.objects.get(email=your_name,password=your_pass)
+       user=EVUser.objects.get(email=your_name,password=your_pass,status="Yes")
        request.session['email'] = your_name
        request.session['id'] = user.id
          
@@ -185,6 +211,10 @@ def booking(request):
     id = request.session.get('id')
     user=EVUser.objects.get(id=id)
     book=Booking.objects.filter(ev_user=user)
+    for booking in book:
+     if timezone.now() - booking.created_at > timedelta(minutes=20):
+        booking.delete()
+    book=Booking.objects.filter(ev_user=user)
     return render(request,'NavUser/booking.html',{'books':book})
 @session_required  
 def bookingrating(request):
@@ -207,6 +237,8 @@ def manageusers(request):
 @session_required  
 def addstation(request):
     return render(request,'Admin/addchargingstation.html')
+def addhome(request):
+    return render(request,'Admin/addhome.html')
 @session_required  
 def stationview(request):
     # id = request.session.get('id')
@@ -328,7 +360,10 @@ def viewbookingstation(request):
     station=AddStation.objects.get(id=id)
     print(station)
     book=Booking.objects.filter(add_station=station)
-    print(book)
+    # for booking in book:
+    #  if timezone.now() - booking.created_at > timedelta(minutes=5):
+    #     booking.delete()
+    # print(book)
     return render(request,'AdminStation/bookingslot.html',{'bookev':book})
 @session_required  
 def userpayment(request):
@@ -391,6 +426,7 @@ def bookingev(request):
     speed = 100
     for i in station:
         if i.station_name==destination:
+            stationtype=i
             lat2=i.latitude
             lon2=i.longitude
             radius = 6371.0
@@ -412,7 +448,7 @@ def bookingev(request):
             minutes = int((time - hours) * 60)
             seconds = int(((time - hours) * 60 - minutes) * 60)
             time="Hour:  "+str(hours)+" Minutes:  "+str(minutes)+" Seconds:  "+str(seconds)
-            return render(request,'NavUser/bookingev.html',{'times':time , 'distances':distance ,'locate':val,'slot':slots,"id":stationid})
+            return render(request,'NavUser/bookingev.html',{'times':time , 'distances':distance ,'locate':val,'slot':slots,"id":stationid,'type':stationtype})
 
     
     # # lat1 = 31.3684
@@ -446,8 +482,10 @@ def adminbookingev(request):
     station=AddStation.objects.all()
     val=station
     speed = 100
+    
     for i in station:
         if i.station_name==destination:
+            stationtype=i
             lat2=i.latitude
             lon2=i.longitude
             radius = 6371.0
@@ -469,7 +507,7 @@ def adminbookingev(request):
             minutes = int((time - hours) * 60)
             seconds = int(((time - hours) * 60 - minutes) * 60)
             time="Hour:  "+str(hours)+" Minutes:  "+str(minutes)+" Seconds:  "+str(seconds)
-            return render(request,'NavUserAdmin/bookingev.html',{'times':time , 'distances':distance ,'locate':val,'slot':slots,"id":stationid})
+            return render(request,'NavUserAdmin/bookingev.html',{'times':time , 'distances':distance ,'locate':val,'slot':slots,"id":stationid,'type':stationtype})
 @session_required  
 def addstationdetails(request):
     stationName = request.POST.get('stationName')
@@ -498,6 +536,38 @@ def addstationdetails(request):
    )
     add_station.save()
     return render(request,'Admin/addchargingstation.html')
+
+@session_required  
+def addstationdetailshome(request):
+    stationName = request.POST.get('stationName')
+    location = request.POST.get('location')
+    latitude = request.POST.get('latitude')
+    longitude = request.POST.get('longitude')
+    ownerName = request.POST.get('ownerName')
+    slotsNumber = request.POST.get('slotsNumber')
+    timing = request.POST.get('timing')
+    email = request.POST.get('email')
+    password = request.POST.get('password')
+    type="Home"
+    id = request.session.get('id')
+    print(stationName)
+    user=User.objects.get(id=id)
+    add_station = AddStation.objects.create(
+    station_name=stationName,
+    location_city=location,
+    longitude=longitude,
+    latitude=latitude,
+    owner_name=ownerName,
+    slots_number=slotsNumber,
+    timing=timing,
+    user_email=email,
+    password=password,
+    user=user ,
+    type=type
+    # Assign the user object to the "user" field
+   )
+    add_station.save()
+    return render(request,'Admin/addhome.html')
 @session_required  
 def addstationdetailsupdate(request):
     stationid = request.POST.get('stationid')
@@ -528,26 +598,27 @@ def addstationdetailsupdate(request):
       
     messages.success(request, 'Updated Success')
     add_station = AddStation.objects.all()
-    return render(request,'Admin/chargingstatiiion.html',{'station':add_station})
+    return redirect('stationview')
+    # return render(request,'Admin/chargingstatiiion.html',{'station':add_station})
     # return render(request,'Admin/addchargingstation.html')
 
 @session_required  
 def ristrict(request,value):
-    user=User.objects.get(id=value)
+    user=EVUser.objects.get(id=value)
     user.status="No"
     user.save()
       
     messages.success(request, 'Ristricted Success')
-    user=User.objects.all()
+    user=EVUser.objects.all()
     return render(request,'Admin/manageuser.html',{'users':user})
 @session_required  
 def unristrict(request,value):
-    user=User.objects.get(id=value)
+    user=EVUser.objects.get(id=value)
     user.status="Yes"
     user.save()
       
     messages.success(request, 'UnRistricted Success')
-    user=User.objects.all()
+    user=EVUser.objects.all()
     return render(request,'Admin/manageuser.html',{'users':user})
 @session_required  
 def deleteuserstation(request,value):
@@ -656,7 +727,49 @@ def filter(request):
             seconds = int(((time - hours) * 60 - minutes) * 60)
             if minutes <= int(minute):
                 locations.append(i)
-    return render(request,'NavUser/navigator.html', {'locate':locations})   
+    return render(request,'NavUser/navigator.html', {'locate':locations}) 
+
+@session_required  
+def filteradmin(request):
+    
+    lat1 = request.POST.get('latitude')
+    lon1 = request.POST.get('longitude')
+    minute = request.POST.get('minute')
+    print(lat1,"checking")
+    destination = request.POST.get('destination')
+    lat1=float(lat1)
+    lon1=float(lon1)
+    # latitude = request.POST.get('latitude')
+    # val=AddStation.objects.all()
+    station=AddStation.objects.all()
+    val=station
+    speed = 100
+    locations=[]
+    for i in station:
+        # if i.station_name==destination:
+            lat2=i.latitude
+            lon2=i.longitude
+            radius = 6371.0
+            lat1_rad = math.radians(lat1)
+            lon1_rad = math.radians(lon1)
+            lat2_rad = math.radians(lat2)
+            lon2_rad = math.radians(lon2)
+            dlat = lat2_rad - lat1_rad
+            dlon = lon2_rad - lon1_rad
+            a = math.sin(dlat / 2)**2 + math.cos(lat1_rad) * math.cos(lat2_rad) * math.sin(dlon / 2)**2
+            c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+            distance = radius * c
+            time = distance / speed
+            slots=i.slots_number
+            stationid=i.id
+            slotcout=Booking.objects.filter(add_station=i).count()
+            slots=slots-slotcout
+            hours = int(time)
+            minutes = int((time - hours) * 60)
+            seconds = int(((time - hours) * 60 - minutes) * 60)
+            if minutes <= int(minute):
+                locations.append(i)
+    return render(request,'NavUserAdmin/navigator.html', {'locate':locations})  
 @session_required  
 def filterstation(request):
     
@@ -738,7 +851,49 @@ def filterdistance(request):
             seconds = int(((time - hours) * 60 - minutes) * 60)
             if distance <= int(minute):
                 locations.append(i)
-    return render(request,'NavUser/navigator.html', {'locate':locations})   
+    return render(request,'NavUser/navigator.html', {'locate':locations}) 
+
+@session_required      
+def filterdistanceadmin(request):
+    
+    lat1 = request.POST.get('latitude')
+    lon1 = request.POST.get('longitude')
+    minute = request.POST.get('minute')
+    print(lat1,"checking")
+    destination = request.POST.get('destination')
+    lat1=float(lat1)
+    lon1=float(lon1)
+    # latitude = request.POST.get('latitude')
+    # val=AddStation.objects.all()
+    station=AddStation.objects.all()
+    val=station
+    speed = 100
+    locations=[]
+    for i in station:
+        # if i.station_name==destination:
+            lat2=i.latitude
+            lon2=i.longitude
+            radius = 6371.0
+            lat1_rad = math.radians(lat1)
+            lon1_rad = math.radians(lon1)
+            lat2_rad = math.radians(lat2)
+            lon2_rad = math.radians(lon2)
+            dlat = lat2_rad - lat1_rad
+            dlon = lon2_rad - lon1_rad
+            a = math.sin(dlat / 2)**2 + math.cos(lat1_rad) * math.cos(lat2_rad) * math.sin(dlon / 2)**2
+            c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+            distance = radius * c
+            time = distance / speed
+            slots=i.slots_number
+            stationid=i.id
+            slotcout=Booking.objects.filter(add_station=i).count()
+            slots=slots-slotcout
+            hours = int(time)
+            minutes = int((time - hours) * 60)
+            seconds = int(((time - hours) * 60 - minutes) * 60)
+            if distance <= int(minute):
+                locations.append(i)
+    return render(request,'NavUserAdmin/navigator.html', {'locate':locations})   
 @session_required  
 def filterdistancestation(request):
     

@@ -9,7 +9,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f1f1f1;
+            background-color:white;
         }
         
         #sidebar {
@@ -69,7 +69,6 @@
           }
         
     </style>
-
     {% include  'Admin/includefiles/css.html'  %}
 </head>
 <body>
@@ -80,71 +79,55 @@
     left: 270px;
     right: 0; /* Adjust if necessary */
     margin: auto;">
-        <h1 style="color:white">Edit Station</h1>
+        <h1 style="color:white">Add Home Charging Station</h1>
        
-        <form id="addStationForm" action="{% url 'addstationdetailsupdate' %}" method="POST">
+        <form id="addStationForm"  action="{% url 'addstationdetailshome' %}" method="POST">
           {% csrf_token %}
-          <div class="form-group">
-            <label style="color:white" for="stationName">Station Id:</label>
-            <input type="text" class="form-control" id="stationid" name="stationid" value="{{station.id}}" required>
-          </div>
             <div class="form-group">
-              <label style="color:white" for="stationName">Station Name:</label>
-              <input type="text" class="form-control" id="stationName" name="stationName" value="{{station.station_name}}" required>
+              <label for="stationName" style="color:white">Station Name:</label>
+              <input type="text" class="form-control" id="stationName" name="stationName" required>
             </div>
             
             <div class="form-group">
-              <label  style="color:white" for="location">Location:</label>
-              <input type="text" class="form-control" id="location" name="location" value="{{station.location_city}}" required>
+              <label for="location" style="color:white">Location:</label>
+              <input type="text" class="form-control" id="location" name="location" required>
             </div>
             
             <div class="form-group">
-              <label style="color:white" for="latitude">Latitude:</label>
-              <input type="text" class="form-control" id="latitude" name="latitude" value="{{station.latitude}}" required>
+              <label for="latitude" style="color:white">Latitude:</label>
+              <input type="text" class="form-control" id="latitude" name="latitude" required>
             </div>
             
             <div class="form-group">
-              <label style="color:white" for="longitude">Longitude:</label>
-              <input type="text" class="form-control" id="longitude" name="longitude" value="{{station.longitude}}" required>
+              <label for="longitude" style="color:white">Longitude:</label>
+              <input type="text" class="form-control" id="longitude" name="longitude" required>
             </div>
             
             <div class="form-group">
-              <label style="color:white" for="ownerName">Owner Name:</label>
-              <input type="text" class="form-control" id="ownerName" name="ownerName" value="{{station.owner_name}}" required>
+              <label for="ownerName" style="color:white">Owner Name:</label>
+              <input type="text" class="form-control" id="ownerName" name="ownerName" required>
             </div>
             
             <div class="form-group">
-              <label style="color:white" for="slotsNumber">Slots Number:</label>
-              <input type="number" class="form-control" id="slotsNumber" name="slotsNumber" value="{{station.slots_number}}" required>
+              <label for="slotsNumber" style="color:white">Slots Number:</label>
+              <input type="number" class="form-control" id="slotsNumber" name="slotsNumber" required>
             </div>
             
             <div class="form-group">
-              <label style="color:white" for="timing">Timing:</label>
-              <input type="text" class="form-control" id="timing" name="timing" value="{{station.timing}}" required>
-            </div>
-            {% if station.user_email %}
-            <div class="form-group">
-              <label  style="color:white" for="timing" style="color:white" hidden>Email:</label>
-              <input type="text" class="form-control" id="timing" name="email" value="{{station.user_email}}"  hidden>
+              <label for="timing" style="color:white">Timing:</label>
+              <input type="text" class="form-control" id="timing" name="timing" required>
             </div>
             <div class="form-group">
-              <label style="color:white" for="timing" style="color:white" hidden>Password:</label>
-              <input type="text" class="form-control" id="timing" name="password"   value="{{station.password}}" hidden>
-            </div> 
-            {% else %}
-            <div class="form-group">
-              <label style="color:white" for="timing" style="color:white">Email:</label>
-              <input type="text" class="form-control" id="timing" name="email"  required>
-
+              <label for="timing" style="color:white">Email:</label>
+              <input type="text" class="form-control" id="timing" name="email" required>
             </div>
             <div class="form-group">
-              <label style="color:white" for="timing" style="color:white">Password:</label>
-              <input type="text" class="form-control" id="timing" name="password" >
-            </div> 
-           {% endif %}
-           
-             
-            <button type="submit" class="btn btn-primary">Submit</button>
+              <label for="timing" style="color:white">Password:</label>
+              <input type="text" class="form-control" id="timing" name="password" required>
+              
+            </div>
+            
+            <button type="submit" class="btn btn-primary" style="color:white">Submit</button>
           </form>
             
     </div>

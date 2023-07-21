@@ -1,6 +1,13 @@
 from datetime import timezone
 from django.db import models
-
+from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.utils import timezone
+from datetime import timedelta
+from django.db import models
+from django.utils import timezone
+from datetime import timedelta
 # Create your models here.
 
 class User(models.Model):
@@ -24,6 +31,8 @@ class AddStation(models.Model):
     user_email = models.EmailField(null=True, default=None)  # Nullable field with default value
     password = models.CharField(max_length=128, null=True, default=None)  # Nullable field with default value
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    type = models.CharField(max_length=255, default='station')
+
 
 
 class EVUser(models.Model):
@@ -31,6 +40,7 @@ class EVUser(models.Model):
     username = models.CharField(max_length=255, unique=True)
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=255)
+    status = models.CharField(max_length=255,default="Yes")
 class UserBill(models.Model):
     id = models.AutoField(primary_key=True)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
@@ -50,9 +60,16 @@ class Booking(models.Model):
 
     ev_user = models.ForeignKey(EVUser, on_delete=models.CASCADE)
     add_station = models.ForeignKey(AddStation, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return f"Booking ID: {self.id}"
 
 
-    # Add additional fields specific to the Booking table if needed
+@receiver(post_save, sender=Booking)
+def delete_after_duration(sender, instance, **kwargs):
+    if timezone.now() - instance.created_at > timedelta(minutes=5):
+        instance.delete()
 
 class UserPayment(models.Model):
     id = models.AutoField(primary_key=True, unique=True)

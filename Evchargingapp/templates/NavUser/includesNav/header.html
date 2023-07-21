@@ -17,10 +17,11 @@
         <ul class="nav_links">
             <li><a href={% url 'navhome' %}>Home</a></li>
             <li><a href={% url 'navigator' %}>Find Station</a></li>
+            {% comment %} <li><a href={% url 'navigator' %}>Home Services</a></li> {% endcomment %}
             <li><a href={% url 'station' %}>Stations</a></li>
             <li><a href={% url 'booking' %}>Booking</a></li>
             <li><a href={% url 'bookingrating' %}>Rating Review</a></li>
-            <li>
+            <li >
                 {% comment %} <a href={% url 'profile' %}>Profile</a> {% endcomment %}
                 {% comment %} <label for="cars">Profile</label> {% endcomment %}
 

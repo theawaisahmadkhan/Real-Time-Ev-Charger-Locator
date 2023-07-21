@@ -294,7 +294,7 @@ footer a {
 			<span><br><br></span>
 			<input type="email" id="email" name="email" placeholder="Email" required />
 			<input type="password" name="your_pass" id="your_pass" placeholder="Password" required />
-			<a href="#">Forgot your password?</a>
+			{% comment %} <a href="#">Forgot your password?</a> {% endcomment %}
 			<button>Sign In</button>
 		</form>
 	</div>
@@ -305,14 +305,14 @@ footer a {
 				<p>To keep connected with us please login with your personal info</p>
 				<button class="ghost" id="signIn">Sign In</button>
                 <br>
-                <button><a href={% url 'home' %}>Home</a></button>
+                <button><a style="color:white" href={% url 'home' %}>Home</a></button>
 			</div>
 			<div class="overlay-panel overlay-right">
 				<h1>EV-Charging</h1>
 				<p>Enter your personal details and start journey with us</p>
-				<button class="ghost" id="signUp">Sign Up</button>
+				{% comment %} <button class="ghost" id="signUp">Sign Up</button> {% endcomment %}
                 <br>
-                <button><a href={% url 'home' %}>Home</a></button>
+                <button><a style="color:white" href={% url 'home' %}>Home</a></button>
 			</div>
 		</div>
 	</div>

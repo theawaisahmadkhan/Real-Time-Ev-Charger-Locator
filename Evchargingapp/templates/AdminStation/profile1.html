@@ -71,28 +71,28 @@
 <body>
     {% include 'AdminStation/includefiles/sidebar.html' %}
     <div id="content">
-        <h1 style="color:white">Welcome to the Admin Dashboard</h1>
-        <p>This is the main content area where you can view and manage various aspects of the system.</p>
+        <h1 style="color:white">Change Password</h1>
+        <p style="color:white"></p>
         
         <form action="updatepasswordstation" method="post" onsubmit="return validateForm()">
             {% csrf_token %}
             
             <div class="form-group">
-                <label for="old_password">Old Password:</label>
+                <label style="color:white" for="old_password">Old Password:</label>
                 <input type="password" class="form-control" id="old_password" name="old_password" required>
             </div>
             
             <div class="form-group">
-                <label for="new_password">New Password:</label>
+                <label style="color:white" for="new_password">New Password:</label>
                 <input type="password" class="form-control" id="new_password" name="new_password" required>
             </div>
             
             <div class="form-group">
-                <label for="confirm_password">Confirm Password:</label>
+                <label style="color:white" for="confirm_password">Confirm Password:</label>
                 <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
             </div>
             
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button style="color:white" type="submit" class="btn btn-primary">Submit</button>
         </form>
         
         <script>
